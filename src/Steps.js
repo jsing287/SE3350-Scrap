@@ -5,23 +5,17 @@ import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion"
 import nextId from "react-id-generator";
 
+
+
+/////// GABOR AND JAS START ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const Numbers = (props) => {
-
-
-
-
-
     return (
  
         <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px', }}>
   
             {
-               
-
                 props.data.map((element, index) => {
-
-                  
-                   
                     if (Array.isArray(element[0])) {
                      
                         return (
@@ -73,14 +67,13 @@ const Numbers = (props) => {
 
 }
 
+/////// GABOR AND JAS END ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-
-
+/////// EVAN AND COLIN START ////////////////////////////////////////////////////////////////////////////////////////////////////
 const Steps = (props) => {
-
 
     const [index1, setIndex1] = useState(-1);
     const [index2, setIndex2] = useState(0);
@@ -89,12 +82,7 @@ const Steps = (props) => {
     const [data, setData] = useState([]);
     const[toggle, setToggle] = useState(true);
    
-    console.log("Branch  length " + props.contents.length);
-    console.log("index3: " + index3);
-    console.log('index1: ' + index1);
-    console.log(props.contents.length)
-
-    console.log(step);
+  
 
 
 
@@ -172,8 +160,10 @@ const Steps = (props) => {
         }
 
     }
+/////// EVAN AND COLIN END////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+/////// JASON START ////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
 
         <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px' }}>
@@ -211,5 +201,7 @@ const Steps = (props) => {
 
 
 }
+
+/////// JASON END ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export default Steps;
