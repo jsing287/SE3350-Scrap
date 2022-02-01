@@ -1,28 +1,52 @@
 import { type } from '@testing-library/user-event/dist/type';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-
+import { motion } from "framer-motion"
+import nextId from "react-id-generator";
 
 const Numbers = (props) => {
 
 
 
-    console.log(props.data)
+    console.log(props.data);
+
+    const [delayAnim, setDelay] = useState(0.5);
+    
+
+   
+  
 
     return (
         // <div>{props.data.join(', ')}</div>
-        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px', width: '50%' }}>
+        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px', }}>
+  
             {
+               
+
                 props.data.map((element, index) => {
 
+                  
+                   
                     if (Array.isArray(element[0])) {
+                     
                         return (
-                            <div key={index} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', margin: '15px' }}>
+                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', }}>
                                 {
-                                    element.map((element2, index) => {
-                                        return <div key={index}>{element2.join(', ')}</div>
-                                    })
+                                    
+                                     element.map((element2, index1) => {
+                                                return <div key={nextId()}>
+                                                 
+                                                  <motion.div
+                                                        initial={{opacity:props.toggle?0.0:1.0}}
+                                                        animate={{ opacity: 1.0 }}
+                                                        transition={{ ease: "easeIn", duration:1.0, delay:index/3 }}>{element2.join(', ')}</motion.div>
+                                           
+                                                </div>
+                                            })
+
+                                  
+                                 
                                 }
                             </div>
 
@@ -30,12 +54,21 @@ const Numbers = (props) => {
 
                     }
                     else {
+                     
+                       
                         return (
 
-                            <div key={Math.random()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }}>{element.join(', ')}</div>
+                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }}>
+                                
+                                <motion.div
+                                    initial={{opacity:props.toggle?0.0:1.0}}
+                                    animate={{ opacity: 1.0 }}  
+                                    transition={{ ease: "easeIn", duration: 1.0, delay:index/3 }}>{element.join(', ')}</motion.div></div>
                         )
 
                     }
+
+                   
 
 
                 })
@@ -60,6 +93,8 @@ const Steps = (props) => {
     const [index3, setIndex3] = useState(0);
     const [step, setStep] = useState('');
     const [data, setData] = useState([]);
+    const[toggle, setToggle] = useState(true);
+   
     console.log("Branch  length " + props.contents.length);
     console.log("index3: " + index3);
     console.log('index1: ' + index1);
@@ -82,6 +117,7 @@ const Steps = (props) => {
                 setIndex1(newValue);
                 setStep(props.contents[index3][index2][newValue]);
                 setData(data => [...props.contents[index3][1]])
+                setToggle(false);
                 return;
 
 
@@ -90,8 +126,9 @@ const Steps = (props) => {
                 console.log('in negative ')
                 setIndex3(index3 - 1)
                 setIndex1(props.contents[index3 - 1][index2].length - 1)
+                setToggle(false);
 
-                setStep(props.contents[index3 - 1][index2][props.contents[index3][index2].length - 1]);
+                setStep(props.contents[index3 - 1][index2][props.contents[index3-1][index2].length - 1]);
                 setData(data => [...props.contents[index3 - 1][1]])
                 return;
 
@@ -104,6 +141,7 @@ const Steps = (props) => {
                 setIndex3(0);
                 setStep(props.contents[0][index2][0]);
                 setData(data => [...props.contents[0][1]])
+                setToggle(true);
 
 
             }
@@ -111,12 +149,22 @@ const Steps = (props) => {
                 setIndex1(0);
                 setIndex3(index3 + 1);
                 setStep(props.contents[index3 + 1][index2][0]);
-                setData(data => [...props.contents[index3 + 1][1]])
+                setData(data => [...props.contents[index3 + 1][1]]);
+                setToggle(true);
+                
             }
             else {
 
                 setStep(props.contents[index3][index2][newValue]);
-                setData(data => [...props.contents[index3][1]])
+                setToggle(false);
+
+                if(newValue===0)
+                {
+                        setData(data => [...props.contents[index3][1]])
+                        setToggle(true);
+
+                }
+             
 
             }
 
@@ -143,9 +191,12 @@ const Steps = (props) => {
 
             <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-evenly', margin: '15px' }} >
                 <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
-                    <div>{step}</div>
-                    <Numbers data={data}></Numbers>
+                    <div style={{width:'500px'}}>{step}</div>
+                    <div>
+                         <Numbers data={data}  toggle={toggle} ></Numbers>
 
+                    </div>
+               
 
 
                 </div>
