@@ -156,7 +156,7 @@ function Level1()
 
         for(let i=0;i<10;i++)
         {
-            nums.push(Math.floor(Math.random()*50));
+            nums.push(Math.floor(Math.random()*20));
         }
 
         let sorted = mergeSort(nums)
