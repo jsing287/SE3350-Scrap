@@ -3,16 +3,10 @@ import {useState, useEffect} from 'react'
 
 
 
-
- 
-  
-   
-
 export function mergeSortingAlgo(unsortedArray){
 
         let branch=[];
    
-
         ////////// SEYON START //////////
             function merge(left, right)
             {
