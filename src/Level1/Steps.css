@@ -1,0 +1,43 @@
+.steps-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
+
+}
+.steps-body{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 15px;
+
+    
+}
+.steps-display{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 15px;
+}
+.steps-nums-header{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width:400px
+}
+.nums-body{
+    display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+  
+
+}
+.nums-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+
+}
