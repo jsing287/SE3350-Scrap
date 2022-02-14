@@ -3,9 +3,35 @@ import { motion } from "framer-motion"
 import nextId from "react-id-generator";
 import './Steps2.css'
 import SelectionHighlighter from "react-highlight-selection";
+import {Howl, Howler} from 'howler';
+import wrong from "../AudioClips/wrongSound.mp3"
+import right from "../AudioClips/rightSound.mp3"
 
+var sfx = {
+    wrong: new Howl({
+        src: [
+            wrong
+        ],
+        onend: function (){
+            console.log("the wrong sound played")
+        }
+    }),
+    right: new Howl({
+        src: [
+            right
+        ],
+        onend: function (){
+            console.log("the right sound played")
+        }
+    }),
 
+    fake: new Howl({
+        src:[
+            'src/AudioClips/click.mp3'
 
+        ]
+    })
+}
 
 const Numbers = (props) => {
     
@@ -31,6 +57,9 @@ const Numbers = (props) => {
     }
 
     const addNum=(num)=>{
+        console.log(sfx.fake.state())
+        sfx.fake.play();
+        console.log(sfx.fake.state())
 
         let holder = [...mergedArray, num]
        
@@ -154,6 +183,7 @@ const Steps2 = (props) => {
 
         if(JSON.stringify(merge)===JSON.stringify(compareData[compareData.length-1]))
         {
+            sfx.right.play()
             setColor(true);
             setResult('CORRECT')
            
@@ -170,6 +200,7 @@ const Steps2 = (props) => {
 
         if(JSON.stringify(merge)===JSON.stringify(compareData[counter]))
         {
+            sfx.right.play()
             setColor(true);
             setResult('CORRECT')
            
@@ -184,6 +215,7 @@ const Steps2 = (props) => {
         }
         else if(compareData[counter].join('').includes(merge.join('')))
         {
+            sfx.right.play()
             setColor(true);
             setResult('CORRECT')
             if(counter+1<compareData.length)
@@ -197,9 +229,11 @@ const Steps2 = (props) => {
         }
         else
         {
+            sfx.wrong.play()
             setColor(false);
             setResult('WRONG')
             return false;
+
 
         }
        
@@ -217,6 +251,7 @@ const Steps2 = (props) => {
         {
             if(nums===data[1][0].join(''))
             {
+                sfx.right.play()
                 console.log('correct');
                 setColor(true);
                 setResult('CORRECT')
@@ -224,6 +259,7 @@ const Steps2 = (props) => {
             }
             else if(nums.length>0)
             {
+                sfx.wrong.play()
                 console.log('incorrect');
                 setColor(false);
                 setResult('WRONG')
@@ -237,6 +273,7 @@ const Steps2 = (props) => {
             console.log(nums);
             if(nums===data[1][0].toString())
             {
+                sfx.right.play()
                 console.log('correct');
                 setColor(true);
                 setResult('CORRECT');
@@ -244,6 +281,7 @@ const Steps2 = (props) => {
             }
             else if(nums.length>0)
             {
+                sfx.wrong.play()
                 console.log('incorrect');
                 setColor(false);
                 setResult('WRONG');
@@ -361,7 +399,7 @@ const Steps2 = (props) => {
                 <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle}>Next Step</button>
             </div>
 
-            <div style={{color:toggleColor?'green':'red'}}>{result}</div>
+            <div style={{color:toggleColor?'green':'red'}} id="RW">{result}</div>
 
             <div className='steps-display' >
                 <div className='steps-body'>
