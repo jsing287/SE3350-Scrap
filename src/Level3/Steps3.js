@@ -3,6 +3,35 @@ import { motion } from "framer-motion"
 import nextId from "react-id-generator";
 import './Steps3.css'
 import SelectionHighlighter from "react-highlight-selection";
+import {Howl, Howler} from 'howler';
+import wrong from "../AudioClips/wrongSound.mp3"
+import right from "../AudioClips/rightSound.mp3"
+
+var sfx = {
+    wrong: new Howl({
+        src: [
+            wrong
+        ],
+        onend: function (){
+            console.log("the wrong sound played")
+        }
+    }),
+    right: new Howl({
+        src: [
+            right
+        ],
+        onend: function (){
+            console.log("the right sound played")
+        }
+    }),
+
+    fake: new Howl({
+        src:[
+            'src/AudioClips/click.mp3'
+
+        ]
+    })
+}
 
 
 
@@ -154,6 +183,7 @@ const Steps3 = (props) => {
 
         if(JSON.stringify(merge)===JSON.stringify(compareData[compareData.length-1]))
         {
+            sfx.right.play()
             setColor(true);
             setResult('CORRECT')
            
@@ -170,6 +200,7 @@ const Steps3 = (props) => {
 
         if(JSON.stringify(merge)===JSON.stringify(compareData[counter]))
         {
+            sfx.right.play()
             setColor(true);
             setResult('CORRECT')
            
@@ -184,6 +215,7 @@ const Steps3 = (props) => {
         }
         else if(compareData[counter].join('').includes(merge.join('')))
         {
+            sfx.right.play()
             setColor(true);
             setResult('CORRECT')
             if(counter+1<compareData.length)
@@ -197,6 +229,7 @@ const Steps3 = (props) => {
         }
         else
         {
+            sfx.wrong.play()
             setColor(false);
             setResult('WRONG')
             return false;
@@ -217,6 +250,7 @@ const Steps3 = (props) => {
         {
             if(nums===data[1][0].join(''))
             {
+                sfx.right.play()
                 console.log('correct');
                 setColor(true);
                 setResult('CORRECT')
@@ -224,6 +258,7 @@ const Steps3 = (props) => {
             }
             else if(nums.length>0)
             {
+                sfx.wrong.play()
                 console.log('incorrect');
                 setColor(false);
                 setResult('WRONG')
@@ -237,6 +272,7 @@ const Steps3 = (props) => {
             console.log(nums);
             if(nums===data[1][0].toString())
             {
+                sfx.right.play()
                 console.log('correct');
                 setColor(true);
                 setResult('CORRECT');
@@ -244,6 +280,7 @@ const Steps3 = (props) => {
             }
             else if(nums.length>0)
             {
+                sfx.wrong.play()
                 console.log('incorrect');
                 setColor(false);
                 setResult('WRONG');

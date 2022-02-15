@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion"
 import nextId from "react-id-generator";
 import './Steps.css'
+import {Howl, Howler} from 'howler';
+import click from '../AudioClips/click.mp3'
 
-
-
+var sfx = {
+    fake: new Howl({
+    src:[click]
+})
+}
 
 const Numbers = (props) => {
     
@@ -112,6 +117,10 @@ const Steps = (props) => {
 
             if (index3 === props.contents.length-1 && index1 === props.contents[index3][index2].length - 1) {
                 console.log('in reset')
+                console.log(sfx.fake.state())
+                sfx.fake.play();
+                console.log(sfx.fake.state())
+                console.log(sfx.fake)
                 setIndex1(-1);
                 setIndex3(0);
                 setStep('');
