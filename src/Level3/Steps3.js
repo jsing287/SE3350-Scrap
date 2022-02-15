@@ -150,7 +150,7 @@ const Steps3 = (props) => {
 
     const [index1, setIndex1] = useState(-1);
     const [index2, setIndex2] = useState(0);
-    const [index3, setIndex3] = useState(0);
+    const [index3, setIndex3] = useState(-1);
     const [step, setStep] = useState('');
     const [data, setData] = useState([]);
     const[toggleNum, setToggleNum] = useState(false);
@@ -303,30 +303,19 @@ const Steps3 = (props) => {
            
 
 
-            if (newValue < index1 && newValue >= 0) {
+            if (newValue < index3 && newValue >= 0) {
 
-                setIndex1(newValue);
-                setStep(props.contents[index3][index2][newValue]);
-                setData(data => [...props.contents[index3][1]])
+             
+                setData(data => [...props.contents[newValue][1]])
+                setIndex3(newValue)
                 
                 return;
 
 
             }
-            else if (newValue < index1 && newValue < 0) {
-                console.log('in negative ')
-                setIndex3(index3 - 1)
-                setIndex1(props.contents[index3 - 1][index2].length - 1)
-              
+         
 
-                setStep(props.contents[index3 - 1][index2][props.contents[index3-1][index2].length - 1]);
-                setData(data => [...props.contents[index3 - 1][1]])
-                return;
-
-
-            }
-
-            if (index3 === props.contents.length-1 && index1 === props.contents[index3][index2].length - 1) {
+            if (index3 === props.contents.length-1 ) {
                 console.log('in reset')
                 setIndex1(-1);
                 setIndex3(0);
@@ -337,13 +326,20 @@ const Steps3 = (props) => {
 
 
             }
-            else if (index1 === props.contents[index3][index2].length - 1) {
+            else {
 
-                if(toggleColor&&(inMerge?doneMerge:true))
+                if(newValue===0)
                 {
-                    setIndex1(0);
+                        setIndex3(newValue)
+                        setData(data => [...props.contents[0][1]])
+
+                }
+
+                else  if(toggleColor&&(inMerge?doneMerge:true))
+                {
+                   
                     setIndex3(index3 + 1);
-                    setStep(props.contents[index3 + 1][index2][0]);
+              
                     setData(data => [...props.contents[index3 + 1][1]]);
                    
                     setColor(false);
@@ -361,22 +357,7 @@ const Steps3 = (props) => {
                
                 
             }
-            else {
-               
-
-                
-                setIndex1(newValue)
-                setStep(props.contents[index3][index2][newValue]);
-               
-
-                if(newValue===0)
-                {
-                        setData(data => [...props.contents[index3][1]])
-
-                }
-             
-
-            }
+         
 
 
 
@@ -394,8 +375,8 @@ const Steps3 = (props) => {
         <div className='steps-header'>
             <div className='steps-body' >
 
-                <button onClick={() => { changeStep(index1 - 1) }} disabled={index1 <= 0 && index3 === 0 && index2 === 0 ? true : false}>Previous Step</button>
-                <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle}>Next Step</button>
+                <button onClick={() => { changeStep(index3 - 1) }} disabled={index3 === 0? true : false}>Previous Step</button>
+                <button onClick={() => { changeStep(index3 + 1) }} disabled={props.toggle}>Next Step</button>
             </div>
 
             <div style={{color:toggleColor?'green':'red'}}>{result}</div>

@@ -50,7 +50,7 @@ const Home = ()=>
            <div name="body">
                
                    
-                         {levelOne&&<Level1 goToNext={nextLevel}/>}
+                         {levelOne&&<Level1 goToNext={nextLevel}/>} 
                          {levelTwo&&<Level2  goToNext={nextLevel}/>}
                          {levelThree&&<Level3/>}
                      
