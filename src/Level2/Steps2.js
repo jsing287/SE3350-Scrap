@@ -7,6 +7,9 @@ import {Howl, Howler} from 'howler';
 import wrong from "../AudioClips/wrongSound.mp3"
 import right from "../AudioClips/rightSound.mp3"
 
+//Jaz
+
+
 var sfx = {
     wrong: new Howl({
         src: [
