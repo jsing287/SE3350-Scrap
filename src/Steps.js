@@ -81,18 +81,11 @@ const Steps = (props) => {
     const [step, setStep] = useState('');
     const [data, setData] = useState([]);
     const[toggle, setToggle] = useState(true);
-   
-  
-
-
-
 
     function changeStep(newValue) {
         setIndex1(newValue)
 
-
-        if (props.contents.length > 0) {
-
+        if (props.contents.length > 0){
 
             if (newValue < index1 && newValue >= 0) {
 
@@ -101,9 +94,8 @@ const Steps = (props) => {
                 setData(data => [...props.contents[index3][1]])
                 setToggle(false);
                 return;
-
-
             }
+
             else if (newValue < index1 && newValue < 0) {
                 console.log('in negative ')
                 setIndex3(index3 - 1)
@@ -113,8 +105,6 @@ const Steps = (props) => {
                 setStep(props.contents[index3 - 1][index2][props.contents[index3-1][index2].length - 1]);
                 setData(data => [...props.contents[index3 - 1][1]])
                 return;
-
-
             }
 
             if (index3 === props.contents.length - 1 && index1 === props.contents[index3][index2].length - 1) {
@@ -124,7 +114,6 @@ const Steps = (props) => {
                 setStep(props.contents[0][index2][0]);
                 setData(data => [...props.contents[0][1]])
                 setToggle(true);
-
 
             }
             else if (index1 === props.contents[index3][index2].length - 1) {
@@ -146,14 +135,7 @@ const Steps = (props) => {
                         setToggle(true);
 
                 }
-             
-
             }
-
-
-
-
-
         }
         else {
             setStep("byebye")
