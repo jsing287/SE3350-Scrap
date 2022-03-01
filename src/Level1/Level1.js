@@ -57,7 +57,7 @@ const Level1 = (props)=>{
         <div className="level-container">
 
             <div className="header">
-                <div >Level 1</div>
+                <div >Level 1!</div>
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
