@@ -52,7 +52,11 @@ const Home = ()=>
                    
                          {/* {levelOne&&<Level1 goToNext={nextLevel}/>}  */}
                          {/* {true&&<Level2  goToNext={nextLevel}/>} */}
-                         {true&&<Level3/>}
+                         {/*true&&<Level3/>*/}
+
+                         {levelOne&&<Level1 goToNext={nextLevel}/>} 
+                         {levelTwo&&<Level2  goToNext={nextLevel}/>}
+                         {levelThree&&<Level3/>}
                      
            </div>
            

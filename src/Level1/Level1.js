@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import {mergeSortingAlgo} from  '../MergeSort';
 import './Level1.css';
 import  Steps from './Steps';
+import ToolTip from 'react-tooltip';
+import infoLogo from '../Images/index.png';
 
 const Level1 = (props)=>{
 
@@ -57,7 +59,12 @@ const Level1 = (props)=>{
         <div className="level-container">
 
             <div className="header">
-                <div >Level 1!</div>
+                <div className="level-info">
+                    <div>Level 1</div>
+                    <img src={infoLogo} className='info-icon' data-tip="Level 1 Help Here" data-place="right"></img>
+                    <ToolTip/>
+                </div>
+                
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
