@@ -5,6 +5,7 @@ import './Level1.css';
 import  Steps from './Steps';
 import ToolTip from 'react-tooltip';
 import infoLogo from '../Images/index.png';
+import guideData from '../GuideText.json';
 
 const Level1 = (props)=>{
 
@@ -61,7 +62,7 @@ const Level1 = (props)=>{
             <div className="header">
                 <div className="level-info">
                     <div>Level 1</div>
-                    <img src={infoLogo} className='info-icon' data-tip="Level 1 Help Here" data-place="right"></img>
+                    <img src={infoLogo} className='info-icon' data-tip="Level 1: Click Generate Numbers to get started. Click Next Step to advance" data-place="right"></img>
                     <ToolTip/>
                 </div>
                 
