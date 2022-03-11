@@ -1,0 +1,61 @@
+.steps-header{  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
+
+}
+.steps-body{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 15px;
+
+    
+}
+.steps-display{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 15px;
+}
+.steps-nums-header{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width:400px
+}
+.nums-body{
+    display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+  
+
+}
+.nums-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+   word-spacing: 20px;
+
+}
+.nums-outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+   
+
+}
+.custom-class{
+    background-color: rgb(126, 157, 241);
+}
+.picked-nums{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+    
+}

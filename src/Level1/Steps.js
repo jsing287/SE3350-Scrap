@@ -1,25 +1,28 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React, { useEffect, useState } from 'react';
-
-
 import { motion } from "framer-motion"
 import nextId from "react-id-generator";
+import './Steps.css'
+import {Howl, Howler} from 'howler';
+import click from '../AudioClips/click.mp3'
 
-
-
-/////// GABOR AND JAS START ////////////////////////////////////////////////////////////////////////////////////////////////////
+var sfx = {
+    fake: new Howl({
+    src:[click]
+})
+}
 
 const Numbers = (props) => {
+    
     return (
  
-        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px', }}>
+        <div className='steps-nums-header'>
   
             {
                 props.data.map((element, index) => {
                     if (Array.isArray(element[0])) {
                      
                         return (
-                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', }}>
+                            <div key={nextId()} className='nums-body'>
                                 {
                                     
                                      element.map((element2, index1) => {
@@ -46,7 +49,7 @@ const Numbers = (props) => {
                        
                         return (
 
-                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }}>
+                            <div key={nextId()} className='nums-top'>
                                 
                                 <motion.div
                                     initial={{opacity:props.toggle?0.0:1.0}}
@@ -67,12 +70,7 @@ const Numbers = (props) => {
 
 }
 
-/////// GABOR AND JAS END ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-/////// EVAN AND COLIN START ////////////////////////////////////////////////////////////////////////////////////////////////////
 const Steps = (props) => {
 
     const [index1, setIndex1] = useState(-1);
@@ -80,7 +78,16 @@ const Steps = (props) => {
     const [index3, setIndex3] = useState(0);
     const [step, setStep] = useState('');
     const [data, setData] = useState([]);
+<<<<<<< HEAD:src/Steps.js
     const[toggle, setToggle] = useState(true);
+=======
+    const[toggleNum, setToggleNum] = useState(true);
+   
+  
+
+
+
+>>>>>>> 25b6af71a07b217d4399f2d2c571796317b2bbec:src/Level1/Steps.js
 
     function changeStep(newValue) {
         setIndex1(newValue)
@@ -92,7 +99,7 @@ const Steps = (props) => {
                 setIndex1(newValue);
                 setStep(props.contents[index3][index2][newValue]);
                 setData(data => [...props.contents[index3][1]])
-                setToggle(false);
+                setToggleNum(false);
                 return;
             }
 
@@ -100,20 +107,25 @@ const Steps = (props) => {
                 console.log('in negative ')
                 setIndex3(index3 - 1)
                 setIndex1(props.contents[index3 - 1][index2].length - 1)
-                setToggle(false);
+                setToggleNum(false);
 
                 setStep(props.contents[index3 - 1][index2][props.contents[index3-1][index2].length - 1]);
                 setData(data => [...props.contents[index3 - 1][1]])
                 return;
             }
 
-            if (index3 === props.contents.length - 1 && index1 === props.contents[index3][index2].length - 1) {
+            if (index3 === props.contents.length-1 && index1 === props.contents[index3][index2].length - 1) {
                 console.log('in reset')
-                setIndex1(0);
+                console.log(sfx.fake.state())
+                sfx.fake.play();
+                console.log(sfx.fake.state())
+                console.log(sfx.fake)
+                setIndex1(-1);
                 setIndex3(0);
-                setStep(props.contents[0][index2][0]);
-                setData(data => [...props.contents[0][1]])
-                setToggle(true);
+                setStep('');
+                setData([])
+                setToggleNum(true);
+                props.resetGen();
 
             }
             else if (index1 === props.contents[index3][index2].length - 1) {
@@ -121,45 +133,42 @@ const Steps = (props) => {
                 setIndex3(index3 + 1);
                 setStep(props.contents[index3 + 1][index2][0]);
                 setData(data => [...props.contents[index3 + 1][1]]);
-                setToggle(true);
+                setToggleNum(true);
                 
             }
             else {
 
                 setStep(props.contents[index3][index2][newValue]);
-                setToggle(false);
+                setToggleNum(false);
 
                 if(newValue===0)
                 {
                         setData(data => [...props.contents[index3][1]])
-                        setToggle(true);
+                        setToggleNum(true);
 
                 }
             }
         }
         else {
-            setStep("byebye")
+            setStep("error")
         }
 
     }
-/////// EVAN AND COLIN END////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-/////// JASON START ////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
 
-        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px' }}>
-            <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
+        <div className='steps-header'>
+            <div className='steps-body' >
 
                 <button onClick={() => { changeStep(index1 - 1) }} disabled={index1 <= 0 && index3 === 0 && index2 === 0 ? true : false}>Previous Step</button>
-                <button onClick={() => { changeStep(index1 + 1) }}>Next Step</button>
+                <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle}>Next Step</button>
             </div>
 
-            <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-evenly', margin: '15px' }} >
-                <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
-                    <div style={{width:'500px'}}>{step}</div>
+            <div className='steps-display' >
+                <div className='steps-body'>
+                    <div style={{width:'500px', marginRight:'15px'}}>{step}</div>
                     <div>
-                         <Numbers data={data}  toggle={toggle} ></Numbers>
+                         <Numbers data={data}  toggle={toggleNum} ></Numbers>
 
                     </div>
                
@@ -184,6 +193,6 @@ const Steps = (props) => {
 
 }
 
-/////// JASON END ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 export default Steps;
