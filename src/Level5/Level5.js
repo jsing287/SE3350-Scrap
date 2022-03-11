@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {mergeSortingAlgo} from  '../MergeSort';
 import './Level5.css';
-import  Steps3 from './Steps5';
+import  Steps4 from './Steps5';
 
 const Level5 = (props)=>{
 
@@ -41,7 +41,7 @@ const Level5 = (props)=>{
         setSort([]);
         setUnSort([]);
         setStep(true);
-        props.goToNext(1);
+        props.goToNext(5);
     }
 
 
@@ -91,7 +91,7 @@ const Level5 = (props)=>{
                 </div>
       
             </div>
-             <Steps3 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps3> 
+             <Steps4 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps4> 
         </div>
     )
 }

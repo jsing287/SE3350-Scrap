@@ -26,7 +26,9 @@
 
     word-spacing: 10px;
    
-
+  
+   
+   
 }
 
 .custom-class{
@@ -38,4 +40,18 @@
     justify-content: center;
     margin-top: 25px;
     
+}
+.nums-body{
+    display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+  
+
+}
+.nums-outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+   
+
 }

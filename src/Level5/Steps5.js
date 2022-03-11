@@ -86,8 +86,39 @@ const Numbers = (props) => {
   
             {
                 props.data.map((element, index) => {
-                 
-                     if(index===0) {
+
+                    if (Array.isArray(element[0])&&index===0) {
+                     
+                        return (
+                            <div key={nextId()} className='nums-outer'>
+                                <div className='nums-body'>
+                                {
+                                    
+                                     element.map((element2, index1) => {
+                                                return <div key={nextId()} >
+                                                 
+                                                 {element2.map((element3, index3)=>{
+                                                     return(
+                                                         <button key={nextId()} disabled={props.toggle} onClick={()=>{addNum(element3)}}>{element3}</button>
+                                                     )
+                                                 })}
+                                           
+                                                </div>
+                                            })
+
+                                  
+                                 
+                                }
+                                </div>
+                                <div className='picked-nums'>{mergedArray.map((num, index4)=>{
+                                    return(<div key={index4} style={{marginLeft:'15px'}}>{num}</div>)
+                                })}</div>
+                            </div>
+
+                        )
+
+                    }
+                    else if(index===0) {
                         console.log('hi');
                      
                        
