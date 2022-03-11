@@ -1,0 +1,41 @@
+.steps-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
+
+}
+.steps-body{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+   
+  
+
+    
+}
+.steps-display{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+.nums{
+
+    word-spacing: 10px;
+   
+
+}
+
+.custom-class{
+    background-color: rgb(126, 157, 241);
+}
+.picked-nums{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+    
+}
